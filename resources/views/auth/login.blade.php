@@ -109,7 +109,8 @@
                   Sign In
                 </button></div>
             </div>
-            <div class="form__row sign-up__sign">
+            <div class="container">Default email: admin@admin.com <br>Defalult password: 123<br><br></div>
+            <br><div class="form__row sign-up__sign">
               Dont have an account? &nbsp;
               <a class="link" href="{{ route('register') }}">Sign up.
               </a>

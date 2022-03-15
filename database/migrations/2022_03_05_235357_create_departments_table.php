@@ -1,8 +1,9 @@
 <?php
 
-use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
+use App\Models\Department;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
 
 return new class extends Migration
 {
@@ -19,6 +20,10 @@ return new class extends Migration
             $table->string('name_ar');
             $table->timestamps();
         });
+        Department::create([
+            'name_en' => 'Heart Department',
+            'name_ar' => 'قسم القلب',
+        ]);
     }
 
     /**

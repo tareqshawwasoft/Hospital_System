@@ -50,8 +50,7 @@
                     <th>ID</th>
                     <th>English Name</th>
                     <th>Arabic Name</th>
-                    <th>Created At</th>
-                    <th>Updated At</th>
+
 
                 </tr>
 
@@ -60,17 +59,12 @@
                         <td>{{ $dep->id }}</td>
                         <td class="name_en">{{ $dep->name_en }}</td>
                         <td class="name_ar">{{ $dep->name_ar }}</td>
-                        <td>
-                            {{ $dep->created_at->diffForHumans() }}
-                        </td>
-                        <td>
-                            {{ $dep->updated_at->diffForHumans() }}
-                        </td>
+
 
                     </tr>
                 @empty
                     <tr>
-                        <td colspan="5" style="text-align: center">No Data Found</td>
+                        <td colspan="3" style="text-align: center">No Data Found</td>
                     </tr>
                 @endforelse
             </table>
