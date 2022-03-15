@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Home\HomeController;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\DepartmentController;
 
@@ -19,14 +20,11 @@ Route::prefix('admin')->name('admin.')->middleware('auth', 'check_type')->group(
 
 });
 
-
-Route::get('/', function() {
-
-     return view('index');
-})->name('homepage');
+Route::get('/', [HomeController::class, 'index'])->name('homepage');
 
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
 
 Route::view('/not-allowed', 'not_allowed');

@@ -9,7 +9,14 @@
         <link rel="icon" type="image/x-icon" href="{{asset('userstyle/assets/favicon.ico')}}" />
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="{{asset('userstyle/css/styles.css')}}" rel="stylesheet" />
+        <link href="{{ asset('adminstyle/vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
+
     </head>
+    <style>
+        th{
+            color:white;
+        }
+    </style>
     <body id="page-top">
         <!-- Navigation-->
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
@@ -18,8 +25,8 @@
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ms-auto">
-                        <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#services">Departments</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#departments">Departments</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#services">Services</a></li>
                         <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
                     </ul>
                 </div>
@@ -34,21 +41,43 @@
             </div>
         </header>
         <!-- About section-->
-        <section id="about">
-            <div class="container px-4">
-                <div class="row gx-4 justify-content-center">
-                    <div class="col-lg-8">
-                        <h2>About this page</h2>
-                        <p class="lead">This is a great place to talk about your webpage. This template is purposefully unstyled so you can use it as a boilerplate or starting point for you own landing page designs! This template features:</p>
-                        <ul>
-                            <li>Clickable nav links that smooth scroll to page sections</li>
-                            <li>Responsive behavior when clicking nav links perfect for a one page website</li>
-                            <li>Bootstrap's scrollspy feature which highlights which section of the page you're on in the navbar</li>
-                            <li>Minimal custom CSS so you are free to explore your own unique design options</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
+        <section id="departments">
+
+        <div class="container">
+            <h2 class="container px-4 text-center my-3">Our Departments</h2>
+            <table class="table table-hover table-striped table-bordered ">
+                <tr class="bg-light text-white">
+                    <th>ID</th>
+                    <th>English Name</th>
+                    <th>Arabic Name</th>
+                    <th>Created At</th>
+                    <th>Updated At</th>
+
+                </tr>
+
+                @forelse ($departments as $dep)
+                    <tr >
+                        <td>{{ $dep->id }}</td>
+                        <td class="name_en">{{ $dep->name_en }}</td>
+                        <td class="name_ar">{{ $dep->name_ar }}</td>
+                        <td>
+                            {{ $dep->created_at->diffForHumans() }}
+                        </td>
+                        <td>
+                            {{ $dep->updated_at->diffForHumans() }}
+                        </td>
+
+                    </tr>
+                @empty
+                    <tr>
+                        <td colspan="5" style="text-align: center">No Data Found</td>
+                    </tr>
+                @endforelse
+            </table>
+        </div>
+
+
+
         </section>
         <!-- Services section-->
         <section class="bg-light" id="services">
