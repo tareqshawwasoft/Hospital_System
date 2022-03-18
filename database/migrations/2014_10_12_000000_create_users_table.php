@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('email')->unique()->nullable();
             $table->string('phone')->nullable()->unique();
+            $table->string('type')->default('patient');
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();
@@ -29,6 +30,7 @@ return new class extends Migration
          User::create([
             'name' => 'admin',
             'email' =>'admin@admin.com',
+            'type' =>'admin',
             'password' => Hash::make('123'),
         ]);
     }
