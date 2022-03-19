@@ -4,10 +4,13 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Home\HomeController;
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\DoctorsController;
 use App\Http\Controllers\Admin\DepartmentController;
+
 
 Route::prefix('admin')->name('admin.')->middleware('auth', 'check_type')->group(function() {
     Route::get('/', [AdminController::class, 'index'])->name('index');
+    Route::get('/change-password', [AdminController::class, 'change_password'])->name('change_password');
 
     // admin.departments.index
     // admin.departments.create
@@ -17,6 +20,7 @@ Route::prefix('admin')->name('admin.')->middleware('auth', 'check_type')->group(
     // admin.departments.destroy
     // admin.departments.show
     Route::resource('departments', DepartmentController::class);
+    Route::resource('doctors', DoctorsController::class);
 
 });
 
@@ -28,3 +32,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 
 Route::view('/not-allowed', 'not_allowed');
+
+Route::get('verify-doctor/{id}', [DoctorsController::class, 'verify_doctor'])->name('verify_doctor');
+
+

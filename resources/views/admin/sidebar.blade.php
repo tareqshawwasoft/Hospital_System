@@ -29,15 +29,29 @@
 
     <!-- Nav Item - Pages Collapse Menu -->
     <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
-            aria-expanded="true" aria-controls="collapseTwo">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseDepartments"
+            aria-expanded="true" aria-controls="collapseDepartments">
             <i class="fas fa-fw fa-building"></i>
             <span>Departments</span>
         </a>
-        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+        <div id="collapseDepartments" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <a class="collapse-item" href="{{ route('admin.departments.index') }}">All Departments</a>
                 <a class="collapse-item" href="{{ route('admin.departments.create') }}">Add New</a>
+            </div>
+        </div>
+    </li>
+
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseDoctors"
+            aria-expanded="true" aria-controls="collapseDoctors">
+            <i class="fas fa-fw fa-users"></i>
+            <span>Doctors</span>
+        </a>
+        <div id="collapseDoctors" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <a class="collapse-item" href="{{ route('admin.doctors.index') }}">All Doctors</a>
+                <a class="collapse-item" href="{{ route('admin.doctors.create') }}">Add New</a>
             </div>
         </div>
     </li>
