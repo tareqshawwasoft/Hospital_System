@@ -16,6 +16,7 @@
         th{
             color:white;
         }
+
     </style>
     <body id="page-top">
         <!-- Navigation-->
@@ -26,6 +27,7 @@
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ms-auto">
                         <li class="nav-item"><a class="nav-link" href="#departments">Departments</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#doctors">Doctors</a></li>
                         <li class="nav-item"><a class="nav-link" href="#services">Services</a></li>
                         <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
                     </ul>
@@ -59,6 +61,35 @@
                         <td>{{ $dep->id }}</td>
                         <td class="name_en">{{ $dep->name_en }}</td>
                         <td class="name_ar">{{ $dep->name_ar }}</td>
+
+
+                    </tr>
+                @empty
+                    <tr>
+                        <td colspan="3" style="text-align: center">No Data Found</td>
+                    </tr>
+                @endforelse
+            </table>
+        </div>
+    </section>
+
+        <section id="doctors">
+        <div class="container">
+            <h2 class="container px-4 text-center my-3">Our Doctors</h2>
+            <table class="table table-hover table-striped table-bordered ">
+                <tr class="bg-light text-white">
+                    <th>Name</th>
+                    <th>Department</th>
+                    <th>Email</th>
+
+
+                </tr>
+
+                @forelse ($doctors as $doc)
+                    <tr >
+                        <td>{{ $doc->user->name }}</td>
+                        <td class="name_en">{{ $doc->department->name_en }}</td>
+                        <td class="name_ar">{{ $doc->user->email }}</td>
 
 
                     </tr>
