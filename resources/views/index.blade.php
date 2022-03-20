@@ -9,6 +9,8 @@
         <link rel="icon" type="image/x-icon" href="{{asset('userstyle/assets/favicon.ico')}}" />
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="{{asset('userstyle/css/styles.css')}}" rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;0,700;1,400&display=swap" rel="stylesheet" />
+        <link href="{{asset('userstyle/css/styles.css')}}" rel="stylesheet" />
         <link href="{{ asset('adminstyle/vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
 
     </head>
@@ -16,6 +18,69 @@
         th{
             color:white;
         }
+        .card_info{
+            font-family: Arial;
+            font-size: small;
+            margin: 5px;
+            text-align: center;
+        }
+        h6{
+            margin-bottom: 2px;
+        }
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Roboto", sans-serif;
+}
+.card {
+  width: 25%;
+  height: 80%;
+  max-height: 300px;
+  margin: 10px;
+  padding: 10px;
+  text-align: center;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 25px 25px 50px #ffffff, -25px -25px 50px #ffffff;
+  &__container {
+    display: grid;
+    width:25%;
+    height:100%;
+    grid-template-columns: 1fr 1fr 1fr;
+    align-items: center;
+    justify-items: center;
+    color: black;
+  }
+
+  &__content {
+
+    background: white;
+    margin: 10px auto;
+    border-radius: 5px;
+    padding: 20px;
+    cursor: pointer;
+box-shadow:  16px 16px 44px #0a0a0a,
+             -16px -16px 44px #282a28;
+    transition: 0.3s all ease-in-out;
+    &:hover{
+      margin-top:-10px;
+    }
+  }
+  &__header {
+    text-transform: uppercase;
+    font-size: 20px;
+    margin: 20px auto;
+  }
+
+}
+img{
+    width: 35%;
+    height: 35%
+}
+
 
     </style>
     <body id="page-top">
@@ -75,7 +140,23 @@
 
         <section id="doctors">
         <div class="container">
-            <h2 class="container px-4 text-center my-3">Our Doctors</h2>
+            @foreach ($doctors as $doc )
+
+
+            <div class="card__container">
+                <div class="card">
+                  <div class="card__content">
+
+                    <h6 class="card__header">Dr.{{ $doc->user->name }}</h6>
+                      <h6> {{ $doc->department->name_en }}<h6> <br>
+                    <img src="{{asset('images\no-image.jpg')}}" alt="doc-pic"><br>
+                    <p class="card_info">{{ $doc->user->email }}</p>
+                  </div>
+                </div>
+              </div>
+
+@endforeach
+            {{-- <h2 class="container px-4 text-center my-3">Our Doctors</h2>
             <table class="table table-hover table-striped table-bordered ">
                 <tr class="bg-light text-white">
                     <th>Name</th>
@@ -99,9 +180,9 @@
                     </tr>
                 @endforelse
             </table>
-        </div>
+         --}}
 
-
+</div>
 
         </section>
         <!-- Services section-->
