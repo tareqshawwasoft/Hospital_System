@@ -28,7 +28,7 @@ h5{
 }
 
     img {
-        width: 50%;
+        width: 10%;
         height: 60%
     }
 
@@ -109,6 +109,7 @@ h5{
 
 
     <section id="doctors ">
+        <h2 class="container px-4 text-center my-5">Our Doctors</h2>
         <div class="container grid-container">
         @foreach ($doctors as $doc)
         <div class="card" style="width: 15rem; height: 22rem;">
@@ -121,44 +122,6 @@ h5{
 
             </div>
           </div>@endforeach</div>
-{{--
-                    <div class="card">
-                        <div class="card__content">
-
-                            <h6 class="card__header">Dr.{{ $doc->user->name }}</h6>
-                            <h6> {{ $doc->department->name_en }}<h6> <br>
-                                    <img src="{{ asset('images\no-image.jpg') }}" alt="doc-pic"><br>
-                                    <p class="card_info">{{ $doc->user->email }}</p>
-                        </div>
-                    </div> --}}
-
-
-            {{-- <h2 class="container px-4 text-center my-3">Our Doctors</h2>
-            <table class="table table-hover table-striped table-bordered ">
-                <tr class="bg-light text-white">
-                    <th>Name</th>
-                    <th>Department</th>
-                    <th>Email</th>
-
-
-                </tr>
-
-                @forelse ($doctors as $doc)
-                    <tr >
-                        <td>{{ $doc->user->name }}</td>
-                        <td class="name_en">{{ $doc->department->name_en }}</td>
-                        <td class="name_ar">{{ $doc->user->email }}</td>
-
-
-                    </tr>
-                @empty
-                    <tr>
-                        <td colspan="3" style="text-align: center">No Data Found</td>
-                    </tr>
-                @endforelse
-            </table> --}}
-
-
 
     </section>
     <!-- Services section-->
