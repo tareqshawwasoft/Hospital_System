@@ -53,10 +53,10 @@ class DoctorsController extends Controller
             'image' => 'nullable|image|mimes:png,jpg,svg,gif,jpeg',
             'department_id' => 'required'
         ]);
-        $imagename=asset("images/no-image.jpg");
+        $imagename=asset("uploads/no-image.jpg");
         if($request->file('image')){
         $imagename= 'Doctors'. time().rand().$request->file('image')->getClientOriginalName();
-        $request->file('image')->move(public_path('uploads/doctors'),$imagename);}
+        $request->file('image')->move(public_path('uploads'),$imagename);}
 
         $user= User::create([
             'name'=> $request->name,
