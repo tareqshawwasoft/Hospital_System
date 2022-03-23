@@ -18,11 +18,39 @@
 <style>
     .grid-container {
   display: grid;
-  column-gap:  50px;
   grid-auto-flow:column;
   columns: 4;
+  grid-template-columns: repeat(auto-fill, minmax(300px,1fr));
+  gap: 50px;
+  margin-top: 80px;
 
 }
+.container{
+
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+
+  /* Small */
+  @media (min-width: 768px) {
+    .container {
+      width: 750px;
+    }
+  }
+ /* Medium */
+  @media (min-width: 992px) {
+    .container {
+      width: 970px;
+    }
+  }
+  /*  Large */
+  @media (min-width: 1200px) {
+    .container {
+      width: 1170px;
+    }
+  }
 h5{
     margin: 12px;
 }
@@ -31,6 +59,7 @@ h5{
         width: 10%;
         height: 60%
     }
+
 
     .card-title{
         text-align: center;
@@ -42,9 +71,6 @@ h5{
     .card-email{
         text-align: center;
         font-size: 1rem;
-    }
-    .card{
-        border: 0px;
     }
 
 
@@ -110,7 +136,9 @@ h5{
 
     <section id="doctors ">
         <h2 class="container px-4 text-center my-5">Our Doctors</h2>
-        <div class="container grid-container">
+
+        <div class="container">
+        <div class="grid-container">
         @foreach ($doctors as $doc)
         <div class="card" style="width: 15rem; height: 22rem;">
 
@@ -122,6 +150,7 @@ h5{
 
             </div>
           </div>@endforeach</div>
+        </div>
 
     </section>
     <!-- Services section-->

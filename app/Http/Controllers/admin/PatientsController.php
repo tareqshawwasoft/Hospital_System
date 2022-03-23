@@ -3,38 +3,30 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\User;
-use App\Models\Doctor;
-use App\Models\Department;
+use App\Models\Patient;
 use Illuminate\Http\Request;
-use App\Mail\WelcomeDoctorMail;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Mail;
 
-class DoctorsController extends Controller
+class PatientsController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    //get
     public function index()
     {
-        $doctors= Doctor::orderBy('id','desc')->paginate(5);
-        return view('admin.doctors.index', compact('doctors'));
-    }
+        $patients= Patient::orderBy('id','desc')->paginate(10);
+        return view('admin.patients.index', compact('patients'));    }
 
     /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
      */
-    //get
     public function create()
     {
-        $departments = Department::select('id', 'name_en')->get();
-        return view('admin.doctors.create', compact('departments'));
-    }
+        return view('admin.patients.create');    }
 
     /**
      * Store a newly created resource in storage.
@@ -42,46 +34,35 @@ class DoctorsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    //post
     public function store(Request $request)
     {
+
         $request->validate([
             'name' => 'required',
             'email' => 'required|email|unique:users,email',
             'password' => 'required|min:5',
             'phone' => 'required',
-            'image' => 'required|image|mimes:png,jpg,svg,gif,jpeg',
-            'department_id' => 'required'
+            'insurance_number' => 'required|numeric',
+            'dob' => 'required',
         ]);
 
-        if($request->file('image')){
-        $imagename= 'Doctors'. time().rand().$request->file('image')->getClientOriginalName();
-        $request->file('image')->move(public_path('uploads'),$imagename);
-        } else {
-            $imagename=asset("uploads/no-image.jpg");
-        }
 
         $user= User::create([
             'name'=> $request->name,
             'email'=> $request->email,
             'password'=> bcrypt($request->password),
             'phone'=> $request->phone,
-            'type'=> 'doctor',
+            'type'=> 'patient',
 
         ]);
-        Doctor::create([
+        Patient::create([
             'user_id' => $user->id,
-            'department_id' => $request->department_id,
-            'image' => $imagename,
-            'bio' => $request->bio
+            'insurance_number' => $request->insurance_number,
+            'dob' => $request->dob,
+
         ]);
-        // Mail::to($request->email)->send(new WelcomeDoctorMail(
-        //     $user->id,$user->name
-        // ));
-        return redirect()->route('admin.doctors.index')->with('msg', 'Doctor added successfully')->with('type', 'success');
 
-
-    }
+        return redirect()->route('admin.patient.index')->with('msg', 'Patient added successfully')->with('type', 'success');    }
 
     /**
      * Display the specified resource.

@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Home\HomeController;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\DoctorsController;
+use App\Http\Controllers\Admin\PatientsController;
 use App\Http\Controllers\Admin\DepartmentController;
 
 
@@ -21,6 +22,7 @@ Route::prefix('admin')->name('admin.')->middleware('auth', 'check_type')->group(
     // admin.departments.show
     Route::resource('departments', DepartmentController::class);
     Route::resource('doctors', DoctorsController::class);
+    Route::resource('patient', PatientsController::class);
 
 });
 

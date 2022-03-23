@@ -102,6 +102,36 @@
                 @enderror
               </div>
             </div>
+            <div class="form__row">
+              <div class="input">
+                <div class="input__container">
+                  <input id="dob" type="date" class="input__field @error('dob') is-invalid @enderror" name="dob" value="{{ old('dob') }}" >
+                  <label class="input__label" for="dob">
+                    Date of Birth
+                  </label>
+                </div>
+                @error('dob')
+                    <span style="font-size: 14px; color:red">
+                        {{ $message }}
+                    </span>
+                @enderror
+              </div>
+            </div>
+            <div class="form__row">
+              <div class="input">
+                <div class="input__container">
+                  <input id="insurance_number" type="number" class="input__field @error('insurance_number') is-invalid @enderror" name="insurance_number" value="{{ old('insurance_number') }}" >
+                  <label class="input__label" for="insurance_number">
+                    Insurance Number: if applicable
+                  </label>
+                </div>
+                @error('insurance_number')
+                    <span style="font-size: 14px; color:red">
+                        {{ $message }}
+                    </span>
+                @enderror
+              </div>
+            </div>
 
             <div class="form__row">
               <div class="input">

@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id');
             $table->date('dob');
-            $table->string('insurance_number', 10);
+            $table->string('insurance_number', 10)->nullable();
             $table->timestamps();
         });
     }

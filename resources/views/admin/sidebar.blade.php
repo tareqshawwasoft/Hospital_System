@@ -56,6 +56,19 @@
         </div>
     </li>
 
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePatient"
+            aria-expanded="true" aria-controls="collapseDoctors">
+            <i class="fas fa-hospital-user"></i>          <span>Patients</span>
+        </a>
+        <div id="collapsePatient" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <a class="collapse-item" href="{{ route('admin.patient.index') }}">All Patient</a>
+                <a class="collapse-item" href="{{ route('admin.patient.create') }}">Add New</a>
+            </div>
+        </div>
+    </li>
+
     <!-- Sidebar Toggler (Sidebar) -->
     <div class="text-center d-none d-md-inline">
         <button class="rounded-circle border-0" id="sidebarToggle"></button>
