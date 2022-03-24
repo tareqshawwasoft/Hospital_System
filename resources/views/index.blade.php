@@ -17,11 +17,10 @@
 </head>
 <style>
     .grid-container {
-  display: grid;
-  grid-auto-flow:column;
-  columns: 4;
-  grid-template-columns: repeat(auto-fill, minmax(300px,1fr));
-  gap: 50px;
+        display: grid;
+  grid-template-columns: repeat(auto-fill,minmax(300px,1fr));
+  gap: 20px;
+
   margin-top: 80px;
 
 }
@@ -31,29 +30,13 @@
     margin-right: auto;
     padding-left: 15px;
     padding-right: 15px;
+
   }
 
-  /* Small */
-  @media (min-width: 768px) {
-    .container {
-      width: 750px;
-    }
-  }
- /* Medium */
-  @media (min-width: 992px) {
-    .container {
-      width: 970px;
-    }
-  }
-  /*  Large */
-  @media (min-width: 1200px) {
-    .container {
-      width: 1170px;
-    }
-  }
 h5{
     margin: 12px;
 }
+
 
     img {
         width: 10%;
@@ -134,9 +117,8 @@ h5{
     </section>
 
 
-    <section id="doctors ">
+    <section id="doctors">
         <h2 class="container px-4 text-center my-5">Our Doctors</h2>
-
         <div class="container">
         <div class="grid-container">
         @foreach ($doctors as $doc)

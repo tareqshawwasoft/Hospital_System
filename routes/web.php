@@ -26,6 +26,7 @@ Route::prefix('admin')->name('admin.')->middleware('auth', 'check_type')->group(
 
 });
 
+
 Route::get('/', [HomeController::class, 'index'])->name('homepage');
 
 Auth::routes();

@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id');
             $table->foreignId('department_id');
-            $table->string('image')->nullable();
+            $table->string('image')->nullable()->default('uploads/no-image.jpg');
             $table->text('bio')->nullable();
             $table->timestamps();
         });

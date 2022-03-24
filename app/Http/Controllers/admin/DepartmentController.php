@@ -37,6 +37,16 @@ class DepartmentController extends Controller
      */
     public function store(Request $request)
     {
+        $i = 0;
+        foreach($request->name_en as $name){
+        $request->validate([
+            "name_en[$i]" => 'required',
+            "name_en[$i]" => 'required',
+
+        ]);
+    $i++;
+    }
+
         $names_en = $request->name_en;
         $names_ar = $request->name_ar;
         $i = 0;

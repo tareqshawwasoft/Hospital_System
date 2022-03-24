@@ -57,8 +57,6 @@ class DoctorsController extends Controller
         if($request->file('image')){
         $imagename= 'Doctors'. time().rand().$request->file('image')->getClientOriginalName();
         $request->file('image')->move(public_path('uploads'),$imagename);
-        } else {
-            $imagename=asset("uploads/no-image.jpg");
         }
 
         $user= User::create([

@@ -44,12 +44,12 @@ button.btn_remove:hover {
             <div class="item">
                 <div class="mb-3">
                     <label>English Name</label>
-                    <input type="text" name="name_en[]" required placeholder="English Name" class="form-control" />
+                    <input type="text" name="name_en[]"  placeholder="English Name" value="{{ old('name_en[0]') }}" class="form-control" />
                 </div>
 
                 <div class="mb-3">
                     <label>Arabic Name</label>
-                    <input type="text" name="name_ar[]" required placeholder="Arabic Name" class="form-control" />
+                    <input type="text" name="name_ar[]"  placeholder="Arabic Name" value="{{ old('name_ar[0]') }}"class="form-control" />
                 </div>
             </div>
 
