@@ -12,30 +12,33 @@
     <link href="{{ asset('userstyle/css/styles.css') }}" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;0,700;1,400&display=swap"
         rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <link href="{{ asset('adminstyle/vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
 
 </head>
 <style>
     .grid-container {
         display: grid;
-  grid-template-columns: repeat(auto-fill,minmax(300px,1fr));
-  gap: 20px;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 20px;
 
-  margin-top: 80px;
+        margin-top: 80px;
 
-}
-.container{
+    }
 
-    margin-left: auto;
-    margin-right: auto;
-    padding-left: 15px;
-    padding-right: 15px;
+    .container {
 
-  }
+        margin-left: auto;
+        margin-right: auto;
+        padding-left: 15px;
+        padding-right: 15px;
 
-h5{
-    margin: 12px;
-}
+    }
+
+    h5 {
+        margin: 12px;
+    }
 
 
     img {
@@ -44,18 +47,19 @@ h5{
     }
 
 
-    .card-title{
+    .card-title {
         text-align: center;
     }
-    .card-department{
-        text-align: center;
-        font-size: 1rem;
-    }
-    .card-email{
+
+    .card-department {
         text-align: center;
         font-size: 1rem;
     }
 
+    .card-email {
+        text-align: center;
+        font-size: 1rem;
+    }
 
 </style>
 
@@ -120,32 +124,50 @@ h5{
     <section id="doctors">
         <h2 class="container px-4 text-center my-5">Our Doctors</h2>
         <div class="container">
-        <div class="grid-container">
-        @foreach ($doctors as $doc)
-        <div class="card" style="width: 15rem; height: 22rem;">
+            <div class="grid-container">
+                @foreach ($doctors as $doc)
+                    <div class="card" style="width: 15rem; height: 22rem;">
 
-            <img class="card-img-top" src="{{asset('uploads') .'/'. $doc->image}}" alt="doc-pic">
-            <div class="card-body">
-              <h5 class="card-title">Dr. {{" ". $doc->user->name }}</h5>
-              <h5 class="card-department">{{$doc->department->name_en}}</h5>
-              <h5 class="card-email"><a href="mailto:{{ $doc->user->email }}">{{ $doc->user->email }}</a></h5>
+                        <img class="card-img-top" src="{{ asset('uploads') . '/' . $doc->image }}" alt="doc-pic">
+                        <div class="card-body">
+                            <h5 class="card-title">Dr. {{ ' ' . $doc->user->name }}</h5>
+                            <h5 class="card-department">{{ $doc->department->name_en }}</h5>
+                            <h5 class="card-email"><a
+                                    href="mailto:{{ $doc->user->email }}">{{ $doc->user->email }}</a></h5>
 
+                        </div>
+                    </div>
+                @endforeach
             </div>
-          </div>@endforeach</div>
         </div>
 
     </section>
     <!-- Services section-->
     <section class="bg-light" id="services">
-        <div class="container px-4">
-            <div class="row gx-4 justify-content-center">
-                <div class="col-lg-8">
-                    <h2>Services we offer</h2>
-                    <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut optio velit
-                        inventore, expedita quo laboriosam possimus ea consequatur vitae, doloribus consequuntur ex.
-                        Nemo assumenda laborum vel, labore ut velit dignissimos.</p>
+        <div class="container my-5">
+
+
+            <div class="row justify-content-center">
+
+                <div class="col-md-6">
+                    <form>
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control" placeholder="Country Name"
+                                aria-describedby="button-addon2">
+                            <button class="btn btn-outline-secondary" type="submit" id="load-data"> Covid-19
+                                cases</button>
+                        </div>
+                    </form>
+
+
                 </div>
             </div>
+
+
+
+            <div class="data-wrapper">
+            </div>
+
         </div>
     </section>
     <!-- Contact section-->
@@ -164,13 +186,46 @@ h5{
     <!-- Footer-->
     <footer class="py-5 bg-dark">
         <div class="container px-4">
-            <p class="m-0 text-center text-white">Copyright &copy; Your Website {{ date('Y') }}</p>
+            <p  class="m-0 text-center text-white">Copyright &copy; Your Website {{ date('Y') }}</p>
         </div>
     </footer>
     <!-- Bootstrap core JS-->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
     <!-- Core theme JS-->
     <script src="{{ asset('userstyle/js/scripts.js') }}"></script>
+    <script>
+        $('#load-data').click(function() {
+            $('#load-data').prop('disabled', true);
+            // get all posts from url
+            let country = $('form input').val();
+
+
+            $.ajax({
+                type: 'get',
+                url: 'https://covid-api.mmediagroup.fr/v1/cases?country=' + country,
+                success: function(res) {
+
+
+                    var card = `<div class="card mb-4">
+                            <div style="justify-content: space-between" class="card-header">
+                               <span "> Confirmed Cases: </span> <div>${res.All.confirmed}</div>
+                            </div>
+                            <div style="justify-content: space-between" class="card-body">
+                                <span "> Recovered Cases: </span> <div>${res.All.recovered}</div>
+                            </div>
+                            </div>`;
+
+                    $('.data-wrapper').append(card);
+
+
+                    $('#load-data').prop('disabled', false);
+                }
+            })
+            // dispaly all posts in div
+        })
+    </script>
+
+
 </body>
 
 </html>

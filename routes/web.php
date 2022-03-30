@@ -35,7 +35,6 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 
 Route::view('/not-allowed', 'not_allowed');
-Route::view('/getapi', 'getapi');
 
 Route::get('verify-doctor/{id}', [DoctorsController::class, 'verify_doctor'])->name('verify_doctor');
 
