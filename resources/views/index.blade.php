@@ -75,7 +75,7 @@
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item"><a class="nav-link" href="#departments">Departments</a></li>
                     <li class="nav-item"><a class="nav-link" href="#doctors">Doctors</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#services">Services</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#Covid">Covid-19 Cases</a></li>
                     <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
                 </ul>
             </div>
@@ -93,7 +93,7 @@
     <section id="departments">
 
         <div class="container">
-            <h2 class="container px-4 text-center my-3">Our Departments</h2>
+            <h2 class="container px-4 text-center my-5">Our Departments</h2>
             <table class="table table-hover table-striped table-bordered ">
                 <tr class="bg-light text-white">
                     <th>ID</th>
@@ -142,9 +142,11 @@
         </div>
 
     </section>
-    <!-- Services section-->
-    <section class="bg-light" id="services">
+    <!-- Covid section-->
+    <section class="bg-light" id="Covid">
         <div class="container my-5">
+            <h2 class="container px-4 text-center my-5">COVID-19 Cases</h2>
+
 
 
             <div class="row justify-content-center">
@@ -165,7 +167,7 @@
 
 
 
-            <div class="data-wrapper">
+            <div class="data-wrapper ">
             </div>
 
         </div>
@@ -186,7 +188,7 @@
     <!-- Footer-->
     <footer class="py-5 bg-dark">
         <div class="container px-4">
-            <p  class="m-0 text-center text-white">Copyright &copy; Your Website {{ date('Y') }}</p>
+            <p class="m-0 text-center text-white">Copyright &copy; Your Website {{ date('Y') }}</p>
         </div>
     </footer>
     <!-- Bootstrap core JS-->
@@ -206,12 +208,12 @@
                 success: function(res) {
 
 
-                    var card = `<div class="card mb-4">
-                            <div style="justify-content: space-between" class="card-header">
-                               <span "> Confirmed Cases: </span> <div>${res.All.confirmed}</div>
+                    var card = `<div class="card mb-4" style="display: flex">
+                            <div  class="card-header d-flex justify-content-between align-items-center ">
+                               <span> Confirmed Cases: </span> <div>${res.All.confirmed}</div>
                             </div>
-                            <div style="justify-content: space-between" class="card-body">
-                                <span "> Recovered Cases: </span> <div>${res.All.recovered}</div>
+                            <div  class="card-body d-flex justify-content-between align-items-center ">
+                                <span> Recovered Cases: </span> <div>${res.All.confirmed}</div>
                             </div>
                             </div>`;
 
