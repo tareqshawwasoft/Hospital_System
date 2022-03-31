@@ -102,7 +102,7 @@
                         <div class="card-body">
                             <h5 class="card-title">{{ $dep->name_en }}</h5>
                             <div class="container" style="align-content: center;">
-                            <a class="d-flex justify-content-center" href="#doctors"> View Doctors</a></div>
+                            <a class="d-flex justify-content-center" href="{{route('doctors-of-department',$dep->id)}}"> View Doctors</a></div>
                         </div>
                     </div>
                 @endforeach
