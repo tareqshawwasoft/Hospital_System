@@ -25,7 +25,9 @@
 
         margin-top: 80px;
 
+
     }
+
 
     .container {
 
@@ -94,29 +96,17 @@
 
         <div class="container">
             <h2 class="container px-4 text-center my-5">Our Departments</h2>
-            <table class="table table-hover table-striped table-bordered ">
-                <tr class="bg-light text-white">
-                    <th>ID</th>
-                    <th>English Name</th>
-                    <th>Arabic Name</th>
-
-
-                </tr>
-
-                @forelse ($departments as $dep)
-                    <tr>
-                        <td>{{ $dep->id }}</td>
-                        <td class="name_en">{{ $dep->name_en }}</td>
-                        <td class="name_ar">{{ $dep->name_ar }}</td>
-
-
-                    </tr>
-                @empty
-                    <tr>
-                        <td colspan="3" style="text-align: center">No Data Found</td>
-                    </tr>
-                @endforelse
-            </table>
+            <div class="grid-container">
+                @foreach ($departments as $dep)
+                    <div class="card" style="width: 15rem; height: 8rem;">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ $dep->name_en }}</h5>
+                            <div class="container" style="align-content: center;">
+                            <a class="d-flex justify-content-center" href="#doctors"> View Doctors</a></div>
+                        </div>
+                    </div>
+                @endforeach
+            </div>
         </div>
     </section>
 
@@ -224,6 +214,7 @@
                 }
             })
             // dispaly all posts in div
+
         })
     </script>
 

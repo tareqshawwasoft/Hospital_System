@@ -3,11 +3,13 @@
 @section('title', 'Departments | ' . env('APP_NAME'))
 
 @section('content')
+{{--
+<marquee  onmouseover="this.stop();" onmouseout="this.start();"> يرجى تسديد الرسوم والا سوف يتم اغلاق صفحة الطالب </marquee>
 
-
+<iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2FVISIONPLUS.pal&tabs=timeline&width=340&height=500&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true&appId=2994602260758546" width="340" height="500" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe> --}}
 
     <div class="d-flex justify-content-between align-items-center mb-4">
-        <h1 class="m-0">All Departments</h1>
+        <h1 class="m-0">{{ __('admin.Departments') }}</h1>
         <a href="{{ route('admin.departments.create') }}" class="btn btn-outline-primary px-5">Add New</a>
     </div>
 
@@ -20,33 +22,43 @@
         </div>
     @endif
 
+    {{ App()->currentLocale() }}
+
     <table class="table table-hover table-striped table-bordered">
         <tr class="bg-dark text-white">
             <th>ID</th>
-            <th>English Name</th>
-            <th>Arabic Name</th>
-            <th>Created At</th>
-            <th>Updated At</th>
-            <th>Actions</th>
+            <th>{{ __('admin.Name') }}</th>
+            {{-- <th>Arabic Name</th> --}}
+            <th>{{ __('admin.Created At') }}</th>
+            <th>{{ __('admin.Updated At') }}</th>
+            <th>{{ __('admin.Actions') }}</th>
         </tr>
 
         @forelse ($departments as $dep)
+        @php
+            $name = 'name_'.App()->currentLocale();
+        @endphp
             <tr id="row_{{ $dep->id }}">
                 <td>{{ $dep->id }}</td>
-                <td class="name_en">{{ $dep->name_en }}</td>
-                <td class="name_ar">{{ $dep->name_ar }}</td>
+                <td class="name_en"><a href="{{ route('admin.departments.show', $dep->slug) }}">{{ $dep->$name }}</a></td>
+                {{-- <td class="name_ar">{{ $dep->name_ar }}</td> --}}
                 <td>
+                    {{-- {{ $dep->created_at->format('d F, Y') }} --}}
                     {{ $dep->created_at->diffForHumans() }}
                 </td>
                 <td>
+                    {{-- {{ $dep->created_at->format('d F, Y') }} --}}
                     {{ $dep->updated_at->diffForHumans() }}
                 </td>
                 <td>
-                    <a data-id="{{ $dep->id }}" data-toggle="modal" data-target="#editModal" class="btn btn-sm btn-primary btn_edit">Edit</a>
+                    @can('update-department')
+                    <a data-id="{{ $dep->id }}" data-toggle="modal" data-target="#editModal" class="btn btn-sm btn-primary btn_edit">{{ __('admin.Edit') }}</a>
+                    @endcan
+
                     <form class="d-inline" action="{{ route('admin.departments.destroy', $dep->id) }}" method="POST">
                         @csrf
                         @method('delete')
-                        <button onclick="return confirm('Are you sure?!')" class="btn btn-sm btn-danger">Delete</button>
+                        <button onclick="return confirm('Are you sure?!')" class="btn btn-sm btn-danger">{{ __('admin.Delete') }}</button>
                     </form>
                 </td>
             </tr>

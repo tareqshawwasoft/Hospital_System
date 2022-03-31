@@ -11,7 +11,7 @@ class HomeController extends Controller
 {
     public function index()
     {
-        $departments = Department::orderBy('id', 'desc')->paginate(5);
+        $departments = Department::all();
         $doctors = Doctor::orderBy('id', 'desc')->paginate(5);
         return view('index', compact('departments','doctors'));
     }

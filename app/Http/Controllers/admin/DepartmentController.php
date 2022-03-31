@@ -37,23 +37,22 @@ class DepartmentController extends Controller
      */
     public function store(Request $request)
     {
-        $i = 0;
-        foreach($request->name_en as $name){
-        $request->validate([
-            "name_en[$i]" => 'required',
-            "name_en[$i]" => 'required',
 
-        ]);
-    $i++;
-    }
-
-        $names_en = $request->name_en;
+    //     $i = 0;
+    //     foreach($request->name_en as $name){
+    //     $request->validate([
+    //         'name_en[1]' => 'required',
+    //         'name_ar[1]' => 'required'
+    //     ]);
+    // $i++;
+    // }
+    $names_en = $request->name_en;
         $names_ar = $request->name_ar;
         $i = 0;
         foreach($request->name_en as $name) {
             Department::create([
                 'name_en' => $names_en[$i],
-                'name_ar' => $names_ar[$i],
+                'name_ar' => $names_ar[$i]
             ]);
             $i++;
         }
