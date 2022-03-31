@@ -135,7 +135,8 @@
     <!-- Covid section-->
     <section class="bg-light" id="Covid">
         <div class="container my-5">
-            <h2 class="container px-4 text-center my-5">COVID-19 Cases</h2>
+            <h2 class="container px-1 text-center">COVID-19 Cases</h2>
+            <h6 class=" px-1 text-center mb-5">get the number of COVID-19 cases by country for today! </h6>
 
 
 
@@ -167,10 +168,8 @@
         <div class="container px-4">
             <div class="row gx-4 justify-content-center">
                 <div class="col-lg-8">
-                    <h2>Contact us</h2>
-                    <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vero odio fugiat
-                        voluptatem dolor, provident officiis, id iusto! Obcaecati incidunt, qui nihil beatae magnam et
-                        repudiandae ipsa exercitationem, in, quo totam.</p>
+                    <h2 class="container px-4 text-center my-2">Contact Me</h2>
+                    <p class="lead text-center">Contact me at <a href="mailto:tareqsoftwork@gmail.com">tareqsoftwork@gmail.com</a><br> Made by <a href="https://github.com/tareqshawwasoft" target="_blank">Tareq AlShawwa</a></p>
                 </div>
             </div>
         </div>
@@ -178,7 +177,7 @@
     <!-- Footer-->
     <footer class="py-5 bg-dark">
         <div class="container px-4">
-            <p class="m-0 text-center text-white">Copyright &copy; Your Website {{ date('Y') }}</p>
+            <p class="m-0 text-center text-white">Copyright &copy; {{env('APP_NAME')}} {{ date('Y') }}</p>
         </div>
     </footer>
     <!-- Bootstrap core JS-->
