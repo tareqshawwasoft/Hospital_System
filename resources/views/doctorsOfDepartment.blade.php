@@ -77,20 +77,26 @@
                     class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link" href="{{ route('homepage') .'#departments'}}">Departments</a></li>
-                    <li class="nav-item"><a class="nav-link" href="{{ route('homepage') .'#doctors'}}">Doctors</a></li>
-                    <li class="nav-item"><a class="nav-link" href="{{ route('homepage') .'#Covid'}}">Covid-19 Cases</a></li>
-                    <li class="nav-item"><a class="nav-link" href="{{ route('homepage') .'#contact'}}">Contact</a></li>
+                    <li class="nav-item"><a class="nav-link"
+                            href="{{ route('homepage') . '#departments' }}">Departments</a></li>
+                    <li class="nav-item"><a class="nav-link"
+                            href="{{ route('homepage') . '#doctors' }}">Doctors</a></li>
+                    <li class="nav-item"><a class="nav-link"
+                            href="{{ route('homepage') . '#Covid' }}">Covid-19 Cases</a></li>
+                    <li class="nav-item"><a class="nav-link"
+                            href="{{ route('homepage') . '#contact' }}">Contact</a></li>
                 </ul>
             </div>
         </div>
     </nav>
 
-    <section >
-        <h2 class="container px-4 text-center my-5">The {{$department->name_en}}'s Doctors</h2>
+    <section>
+        <h2 class="container px-4 text-center my-5">The {{ $department->name_en }}'s Doctors</h2>
         <div class="container my-5">
+            {{-- @if (false)
+            this will print if it is true --}}
             <div class="grid-container">
-                @foreach ($doctors as $doc)
+                @forelse ($doctors as $doc)
                     <div class="card" style="width: 17rem; height: 22rem;">
 
                         <img class="card-img-top" src="{{ asset('uploads') . '/' . $doc->image }}" alt="doc-pic">
@@ -102,17 +108,28 @@
 
                         </div>
                     </div>
-                @endforeach
+                @empty
+
+                        <h6 hidden>{{ $info = "There are still no doctors for $department->name_en yet!" }}</h6>
+
+                @endforelse
             </div>
+            @if (isset($info))
+            <div class="container px-4 text-center my-5 p-3">
+                <h3 class="my-3">Sorry!</h3>
+                <h3>{{ $info }}</h3>
+            </div>@endif
+
+
         </div>
 
     </section>
 
 
     <!-- Footer-->
-    <footer class="py-5 bg-dark">
+    <footer class="py-5 bg-dark mt-5">
         <div class="container px-4">
-            <p class="m-0 text-center text-white">Copyright &copy; {{env('APP_NAME')}} {{ date('Y') }}</p>
+            <p class="m-0 text-center text-white">Copyright &copy; {{ env('APP_NAME') }} {{ date('Y') }}</p>
         </div>
     </footer>
 
