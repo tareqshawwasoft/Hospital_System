@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Doctor;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Schema;
@@ -31,6 +32,19 @@ return new class extends Migration
             'name' => 'admin',
             'email' =>'admin@admin.com',
             'type' =>'admin',
+            'password' => Hash::make('123'),
+        ]);
+        User::create([
+            'name' => 'tareq',
+            'email' =>'t@t.com',
+            'type' =>'patient',
+            'password' => Hash::make('123'),
+        ]);
+
+         User::create([
+            'name' => 'doc',
+            'email' =>'d@d.com',
+            'type' =>'doctor',
             'password' => Hash::make('123'),
         ]);
     }

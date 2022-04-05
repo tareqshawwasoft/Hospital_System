@@ -109,7 +109,9 @@
                   Sign In
                 </button></div>
             </div>
-            <div class="container">Default email: admin@admin.com <br>Defalult password: 123<br><br></div>
+            <div class="container">Default ADMIN email: admin@admin.com <br>Defalult password: 123<br><br></div>
+            <div class="container">Default DOCTOR email: d@d.com <br>Defalult password: 123<br><br></div>
+            <div class="container">Default PATIENT email: t@t.com <br>Defalult password: 123<br><br></div>
             <br><div class="form__row sign-up__sign">
               Dont have an account? &nbsp;
               <a class="link" href="{{ route('register') }}">Sign up.

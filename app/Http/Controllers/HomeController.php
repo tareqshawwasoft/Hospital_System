@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Doctor;
 use App\Models\Department;
 use Illuminate\Http\Request;
 
@@ -24,7 +25,8 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $departments = Department::select('id', 'name_en')->get();
-        return view('home', compact('departments'));
+        $doctors = Doctor::get();
+        // dd($doctors);
+        return view('home', compact('doctors'));
     }
 }

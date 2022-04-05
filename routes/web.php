@@ -7,7 +7,7 @@ use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\DoctorsController;
 use App\Http\Controllers\Admin\PatientsController;
 use App\Http\Controllers\Admin\DepartmentController;
-
+use App\Http\Controllers\AppointmentController;
 
 Route::prefix('admin')->name('admin.')->middleware('auth', 'check_type')->group(function() {
     Route::get('/', [AdminController::class, 'index'])->name('index');
@@ -20,13 +20,15 @@ Route::prefix('admin')->name('admin.')->middleware('auth', 'check_type')->group(
     // admin.departments.update
     // admin.departments.destroy
     // admin.departments.show
+
     Route::resource('departments', DepartmentController::class);
     Route::resource('doctors', DoctorsController::class);
     Route::resource('patient', PatientsController::class);
 
+
 });
 
-
+Route::resource('appointment', AppointmentController::class);
 Route::get('/', [HomeController::class, 'index'])->name('homepage');
 Route::get('/doctors-of-department/{id}', [HomeController::class, 'doctorsOfDepartment'])->name('doctors-of-department');
 
