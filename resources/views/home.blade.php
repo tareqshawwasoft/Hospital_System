@@ -2,6 +2,15 @@
 
 @section('content')
 
+@if (session('msg'))
+<div class="alert alert-{{ session('type') }} alert-dismissible fade show">
+    {{ session('msg') }}
+    {{-- <button type="button" class="close" data-dismiss="alert" aria-label="Close"> --}}
+        <span aria-hidden="true">&times;</span>
+      </button>
+</div>
+@endif
+
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-8">
@@ -25,8 +34,52 @@
                         </div>
                     @elseif (Auth::user()->type == 'doctor')
                         {{-- This is for the doctor --}}
-                        Accept appointment
+                        {{-- Accept appointment --}}
 
+
+
+                        @if ($errors->any())
+                            <div class="alert alert-danger">
+                                <ul>
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif
+                        <form action="{{route('availabletime.store')}}" method="POST" >
+                            @csrf
+
+                            <h3>Create Availabe times</h3>
+
+                            <input type="hidden" value="{{ Auth::user()->id}}" name="doctor_id" class="form-control" />
+
+                            <div class="mb-3">
+                                <label>Price</label>
+                                <input type="number" name="price" class="form-control" />
+                            </div>
+
+                            <div class="mb-3">
+                                <label>Date From</label>
+                                <input type="datetime-local" name="date_time_from"  class="form-control" />
+                            </div>
+                            <div class="mb-3">
+                                <label>Date To</label>
+                                <input type="datetime-local" name="date_time_to"  class="form-control" />
+                            </div>
+
+                            {{-- <div class="container mb-3">
+                            <div class="container">
+                                <input  type="radio" id="full_time" name="times_available" value="full time">
+                            <label  for="full_time">Full time (8 AM - 5 PM)</label>
+                            </div>
+                            <div class="container">
+                            <input type="radio" id="part_time" name="times_available" value="part time">
+                            <label for="part_time">Part time (10 AM - 2 PM)</label>
+                            </div></div> --}}
+
+                            <button class="btn btn-success px-5" style="float: right">Add</button>
+                        </form>
 
                         @else{{-- This is for the user --}}
                         <!-- here we write the code for the user Start -->
