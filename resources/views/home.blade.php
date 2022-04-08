@@ -2,14 +2,15 @@
 
 @section('content')
 
-@if (session('msg'))
-<div class="alert alert-{{ session('type') }} alert-dismissible fade show">
-    {{ session('msg') }}
-    {{-- <button type="button" class="close" data-dismiss="alert" aria-label="Close"> --}}
-        <span aria-hidden="true">&times;</span>
-      </button>
-</div>
-@endif
+    @if (session('msg'))
+        <div class="alert alert-{{ session('type') }} alert-dismissible fade show">
+            {{ session('msg') }}
+
+            {{-- <button type="button" class="close" data-dismiss="alert" aria-label="Close"> --}}
+            <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    @endif
 
     <div class="container">
         <div class="row justify-content-center">
@@ -20,6 +21,7 @@
 
 
                 @if (Auth::user()->type == 'admin')
+
                     {{-- This is for the admin --}}
                     <div class="card">
                         <div class="card-header">{{ __('Dashboard') }}</div>
@@ -38,6 +40,7 @@
 
 
 
+
                         @if ($errors->any())
                             <div class="alert alert-danger">
                                 <ul>
@@ -47,26 +50,34 @@
                                 </ul>
                             </div>
                         @endif
-                        <form action="{{route('availabletime.store')}}" method="POST" >
+                        <form action="{{ route('availabletime.store') }}" method="POST">
                             @csrf
 
                             <h3>Create Availabe times</h3>
 
-                            <input type="hidden" value="{{ Auth::user()->id}}" name="doctor_id" class="form-control" />
+                            <input type="hidden" value="{{ Auth::user()->id }}" name="doctor_id" class="form-control" />
 
                             <div class="mb-3">
-                                <label>Price</label>
-                                <input type="number" name="price" class="form-control" />
+                                <label>Price per hour</label>
+                                <input type="number" required name="price" class="form-control" />
                             </div>
 
                             <div class="mb-3">
-                                <label>Date From</label>
-                                <input type="datetime-local" name="date_time_from"  class="form-control" />
+                                <label>Date</label>
+                                <input type="date" required  min="{{date('Y-m-d')}}" name="date_of_arrival" class="form-control" />
                             </div>
                             <div class="mb-3">
-                                <label>Date To</label>
-                                <input type="datetime-local" name="date_time_to"  class="form-control" />
+                                <label>Time of arrival</label>
+                                <input type="time" required name="time_of_arrival" min="08:00" max="11:59" class="form-control" />
                             </div>
+                            <div class="mb-3">
+                                <label>Time of departure</label>
+                                <input type="time" required name="time_of_departure" min="14:00" max="18:00" class="form-control" />
+                            </div>
+
+
+
+
 
                             {{-- <div class="container mb-3">
                             <div class="container">
@@ -84,7 +95,7 @@
                         @else{{-- This is for the user --}}
                         <!-- here we write the code for the user Start -->
                         <div class="container">
-                            <form action="{{route('appointment.store')}}" method="post" class="form-control">
+                            <form action="{{ route('appointment.store') }}" method="post" class="form-control">
                                 @csrf
                                 <h2 class="text-center fw-bold my-4">Make an Appointment</h2>
                                 <div class="mb-3">
@@ -99,12 +110,14 @@
                                     <input type="datetime-local" min="{{ date('Y-m-d\TH') }}"
                                         max="{{ date('Y-m-d\TH:i:s', strtotime(date('Y-m-d\TH:i:s')) + 60 * 3600 * 24) }}"
                                         name="dob" class="form-control mb-5" placeholder="Your Date">
-                                        <h5 mb-5> The Price on this appointment will be 100 NIS payed upon arrival</h3>
-                                    <input type="submit" name="submit" class="form-control btn-success"
-                                        placeholder="Your Date">
+                                    <h5 mb-5> The Price on this appointment will be 100 NIS payed upon arrival</h3>
+                                        <input type="submit" name="submit" class="form-control btn-success"
+                                            placeholder="Your Date">
 
                                 </div>
                             </form>
+
+
                         </div>
                         <!-- here we write the code for the user Finish -->
                 @endif
@@ -114,4 +127,6 @@
             </div>
         </div>
     </div>
+
+
 @endsection
