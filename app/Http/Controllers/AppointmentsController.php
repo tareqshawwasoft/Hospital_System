@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\AvailableTime;
+use App\Models\Appoinment;
 use Illuminate\Http\Request;
+use App\Models\AvailableTime;
+use App\Models\Patient;
+use Illuminate\Support\Facades\Auth;
 
-class AppointmentController extends Controller
+class AppointmentsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -34,21 +37,18 @@ class AppointmentController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-
     {
-        dd($request);
-        // $table->foreignId('doctor_id');
-        // $table->timestamp('date_from')->nullable();
-        // $table->timestamp('date_to')->nullable();
-        // $table->tinyInteger('status')->default(0);
-        // $table->double('price');
-        // AvailableTime::create([
-        //     'doctor_id' => $request->doctor_id,
-        //     'email' =>'admin@admin.com',
-        //     'type' =>'admin',
-        //     'password' => Hash::make('123'),
-        // ]);
-       return redirect()->route('homepage')->with('msg', 'Department added successfully')->with('type', 'success');
+        $current_user_id=Auth::user()->id;
+        $patient_id=Patient::all()->where('user_id',$current_user_id)->first()->id;
+        $availableTimeSelected=AvailableTime::all()->where('id',$request->appointment_select)->first();
+        Appoinment::create([
+            "doctor_id" => $availableTimeSelected->doctor_id,
+            "patinet_id" => $patient_id,
+            "available_time_id" => $request->appointment_select,
+            "price" => $availableTimeSelected->price,
+        ]);
+        return redirect()->route('homepage')->with('msg', 'show added successfully')->with('type', 'success');
+
     }
 
     /**

@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Doctor;
+use App\Models\Patient;
 use App\Models\Department;
 use Illuminate\Http\Request;
+use App\Models\AvailableTime;
 
 class HomeController extends Controller
 {
@@ -26,7 +28,10 @@ class HomeController extends Controller
     public function index()
     {
         $doctors = Doctor::get();
+        $patient = Patient::get();
+        $available= AvailableTime::all()->where('status','0');
+        // dd($available);
         // dd($doctors);
-        return view('home', compact('doctors'));
+        return view('home', compact('doctors','available','patient'));
     }
 }

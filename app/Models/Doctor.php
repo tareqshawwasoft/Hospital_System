@@ -14,4 +14,11 @@ class Doctor extends BaseModel
         return $this->belongsTo(Department::class);
     }
 
+    public function availableTime()
+    {
+        return $this->has(Department::class);
+    }
+
+
+
 }

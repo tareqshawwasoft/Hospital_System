@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('patinet_id');
             $table->foreignId('doctor_id');
-            $table->foreignId('avilable_time_id');
+            $table->foreignId('available_time_id');
             $table->double('price');
             $table->timestamps();
         });
