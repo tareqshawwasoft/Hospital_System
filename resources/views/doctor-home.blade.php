@@ -66,28 +66,6 @@
                 <h2> Hello {{ Auth::user()->name }}!</h2>
             </div>
 
-
-            @if (Auth::user()->type == 'admin')
-
-                {{-- This is for the admin --}}
-                <div class="card">
-                    <div class="card-header">{{ __('Dashboard') }}</div>
-                    <div class="card-body">
-                        @if (session('status'))
-                            <div class="alert alert-success" role="alert">
-                                {{ session('status') }}
-                            </div>
-                        @endif
-                        {{ __('You are logged in!') }}
-                        <a href="{{ route('admin.index') }}">GO to admin</a>
-                    </div>
-                @elseif (Auth::user()->type == 'doctor')
-                    {{-- This is for the doctor --}}
-                    {{-- Accept appointments --}}
-
-
-
-
                     @if ($errors->any())
                         <div class="alert alert-danger">
                             <ul>
@@ -128,49 +106,10 @@
 
 
 
-
-
-                        {{-- <div class="container mb-3">
-                            <div class="container">
-                                <input  type="radio" id="full_time" name="times_available" value="full time">
-                            <label  for="full_time">Full time (8 AM - 5 PM)</label>
-                            </div>
-                            <div class="container">
-                            <input type="radio" id="part_time" name="times_available" value="part time">
-                            <label for="part_time">Part time (10 AM - 2 PM)</label>
-                            </div></div> --}}
-
                         <button class="btn btn-success px-5" style="float: right">Add</button>
                     </form>
 
-                    @else{{-- This is for the user --}}
-                    <!-- here we write the code for the user Start -->
-                    <div class="container">
-                        <form action="{{ route('appointments.store') }}" method="post" class="form-control">
-                            @csrf
-                            <h2 class="text-center fw-bold my-4">Make an Appointments</h2>
-                            <div class="mb-3">
 
-
-                                    <select name="appointment_select" id="appointment_select">
-                                    @foreach ($available as $ava)
-                                    <option name="chosen_appointment_id" value="{{$ava->id}}">
-                                               Doctor name: {{ $ava->doctor->user->name }}||
-                                               Time: {{ $ava->date_from }}
-                                        </option>
-                                    @endforeach</select>
-
-                                </div>
-
-                            </div>
-
-                            <input type="submit" class="btn btn-success" style=" align-content:center;" value=" Make Appointment" />
-                        </form>
-
-
-                    </div>
-                    <!-- here we write the code for the user Finish -->
-            @endif
 
 
 

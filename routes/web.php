@@ -10,6 +10,7 @@ use App\Http\Controllers\Admin\DoctorsController;
 use App\Http\Controllers\AvailableTimeController;
 use App\Http\Controllers\Admin\PatientsController;
 use App\Http\Controllers\Admin\DepartmentController;
+use App\Http\Controllers\LandingController;
 
 Route::prefix('admin')->name('admin.')->middleware('auth', 'check_type')->group(function() {
     Route::get('/', [AdminController::class, 'index'])->name('index');
@@ -37,7 +38,8 @@ Route::get('/doctors-of-department/{id}', [HomeController::class, 'doctorsOfDepa
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [LandingController::class, 'index'])->name('home');
+
 
 Route::view('/not-allowed', 'not_allowed');
 

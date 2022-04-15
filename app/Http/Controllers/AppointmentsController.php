@@ -38,16 +38,21 @@ class AppointmentsController extends Controller
      */
     public function store(Request $request)
     {
+
         $current_user_id=Auth::user()->id;
         $patient_id=Patient::all()->where('user_id',$current_user_id)->first()->id;
-        $availableTimeSelected=AvailableTime::all()->where('id',$request->appointment_select)->first();
+        $availableTimeSelected=AvailableTime::all()->where('id',$request->available_id)->first();
         Appoinment::create([
             "doctor_id" => $availableTimeSelected->doctor_id,
             "patinet_id" => $patient_id,
-            "available_time_id" => $request->appointment_select,
+            "available_time_id" => $request->available_id,
             "price" => $availableTimeSelected->price,
         ]);
-        return redirect()->route('homepage')->with('msg', 'show added successfully')->with('type', 'success');
+
+        $avaTime = AvailableTime::find($request->available_id);
+        $avaTime->status = 1;
+        $avaTime->save();
+        return redirect()->route('home')->with('msg', 'show added successfully')->with('type', 'success');
 
     }
 
