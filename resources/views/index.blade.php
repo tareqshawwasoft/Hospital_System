@@ -99,7 +99,9 @@
                         <div class="card-body">
                             <h5 class="card-title">{{ $dep->name_en }}</h5>
                             <div class="container" style="align-content: center;">
-                            <a class="d-flex justify-content-center" href="{{route('doctors-of-department',$dep->id)}}"> View Doctors</a></div>
+                                <a class="d-flex justify-content-center"
+                                    href="{{ route('doctors-of-department', $dep->id) }}"> View Doctors</a>
+                            </div>
                         </div>
                     </div>
                 @endforeach
@@ -159,6 +161,17 @@
             </div>
 
         </div>
+
+        <!-- Covid Palestine section-->
+        <div class="bg-light" id="Covid-ps" style="margin-top: 10%">
+            <div class="container my-5">
+                <h2 class="container px-1 text-center">COVID-19 Cases in Palestine</h2>
+                <h6 class=" px-1 text-center mb-5">COVID-19 statistics in Palestine </h6>
+                <div class="data-wrapper-ps">
+                </div>
+
+            </div>
+        </div>
     </section>
     <!-- Contact section-->
     <section id="contact">
@@ -166,7 +179,9 @@
             <div class="row gx-4 justify-content-center">
                 <div class="col-lg-8">
                     <h2 class="container px-4 text-center my-2">Contact Me</h2>
-                    <p class="lead text-center">Contact me at <a href="mailto:tareqsoftwork@gmail.com">tareqsoftwork@gmail.com</a><br> Made by <a href="https://github.com/tareqshawwasoft" target="_blank">Tareq AlShawwa</a></p>
+                    <p class="lead text-center">Contact me at <a
+                            href="mailto:tareqsoftwork@gmail.com">tareqsoftwork@gmail.com</a><br> Made by <a
+                            href="https://github.com/tareqshawwasoft" target="_blank">Tareq AlShawwa</a></p>
                 </div>
             </div>
         </div>
@@ -174,7 +189,7 @@
     <!-- Footer-->
     <footer class="py-5 bg-dark">
         <div class="container px-4">
-            <p class="m-0 text-center text-white">Copyright &copy; {{env('APP_NAME')}} {{ date('Y') }}</p>
+            <p class="m-0 text-center text-white">Copyright &copy; {{ env('APP_NAME') }} {{ date('Y') }}</p>
         </div>
     </footer>
     <!-- Bootstrap core JS-->
@@ -206,11 +221,48 @@
                     $('.data-wrapper').append(card);
 
 
-                    $('#load-data').prop('disabled', false);
                 }
             })
             // dispaly all posts in div
 
+        })
+        $.ajax({
+            type: 'get',
+            url: 'https://api.apify.com/v2/key-value-stores/SbribCOVf2wgR868y/records/LATEST?disableRedirect=true',
+            success: function(res) {
+
+
+                var card = `<div class="card mb-4" style="display: flex">
+
+
+                            <div  class="card-header d-flex justify-content-between align-items-center ">
+                            <span> Infected Cases: </span> <div>${res.infected}</div>
+                            </div>
+
+                            <div  class="card-body d-flex justify-content-between align-items-center ">
+                            <span> Tested Cases: </span> <div>${res.tested}</div>
+                            </div>
+
+
+                            <div  class="card-body d-flex justify-content-between align-items-center ">
+                            <span> Recovered Cases: </span> <div>${res.recovered}</div>
+                            </div>
+
+                            <div  class="card-body d-flex justify-content-between align-items-center ">
+                            <span> Active Cases: </span> <div>${res.active}</div>
+                            </div>
+
+
+                            <div  class="card-body d-flex justify-content-between align-items-center ">
+                            <span> New Cases: </span> <div>${res.newCases}</div>
+                            </div>
+
+                            </div>`;
+
+                $('.data-wrapper-ps').append(card);
+
+
+            }
         })
     </script>
 
@@ -218,3 +270,4 @@
 </body>
 
 </html>
+
