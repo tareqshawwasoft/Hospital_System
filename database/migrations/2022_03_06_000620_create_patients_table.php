@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('patients', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id');
-            $table->date('dob');
+            $table->date('dob')->nullable();
             $table->string('insurance_number', 10)->nullable();
             $table->timestamps();
         });

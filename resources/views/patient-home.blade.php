@@ -83,6 +83,7 @@
                                     @endforeach</select> --}}
                                     {{-- end209302903902903920309293029309203902903929302903920930290390293092030309029302932930903 --}}
 
+                                    @if (isset($available))
                                     <table class="table table-hover table-striped table-bordered">
                                         <tr class="bg-dark text-white">
                                             <th style="color: white">Doctor Name</th>
@@ -90,24 +91,29 @@
                                             <th style="color: white">Actions</th>
                                         </tr>
 
-                                        @forelse ($available as $ava)
-                                            <tr>
-                                                <td>{{ $ava->doctor->user->name  }}</td>
-                                                <td>{{ $ava->date_from }}</td>
 
-                                                <td>
-                                                    <form class="d-inline" action="{{ route('appointments.store') }}" method="POST">
-                                                        @csrf
-                                                        <input type="hidden" name="available_id" value="{{$ava->id}}">
-                                                        <button onclick="return confirm('Are you sure?')" class="btn btn-sm btn-success">Make Appointment</button>
-                                                    </form>
-                                                </td>
-                                            </tr>
-                                        @empty
-                                            <tr>
-                                                <td colspan="8" style="text-align: center">No Data Found</td>
-                                            </tr>
-                                        @endforelse
+                                        @forelse ($available as $ava)
+                                        <tr>
+                                            <td>{{ $ava->doctor->user->name  }}</td>
+                                            <td>{{ $ava->date_from }}</td>
+
+                                            <td>
+                                                <form class="d-inline" action="{{ route('appointments.store') }}" method="POST">
+                                                    @csrf
+                                                    <input type="hidden" name="available_id" value="{{$ava->id}}">
+                                                    <button onclick="return confirm('Are you sure?')" class="btn btn-sm btn-success">Make Appointment</button>
+                                                </form>
+                                            </td>
+                                        </tr>
+                                    @empty
+                                        <tr>
+                                            <td colspan="8" style="text-align: center">No Data Found</td>
+                                        </tr>
+                                    @endforelse
+                                        @else
+                                           <h3>There are not available times to get an appointment, try again later!</h3>
+                                        @endif
+
                                     </table>
                                     {{-- end209302903902903920309293029309203902903929302903920930290390293092030309029302932930903 --}}
 
@@ -116,11 +122,15 @@
 
                             </div>
 
-                            <input type="submit" class="btn btn-success" style=" align-content:center;" value=" Make Appointment" />
                         </form>
                         <div class="container my-5">
                             <h2> My Appointments</h2>
-                            <h4> {{$appointment->id}}</h4>
+                            <h4>
+                                @if (isset($appointment))
+                                    {{$appointment->id}}
+                                    @else
+                                    You have no appointments yet!
+                                @endif</h4>
                         </div>
 
                     </div>
