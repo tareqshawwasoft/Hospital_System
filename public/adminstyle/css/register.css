@@ -71,7 +71,7 @@
         content: '*';
         color: red; }
       .input__field:focus, .input__field:not(:placeholder-shown) {
-        border-color: #434176; }
+        border-color: #004dc0; }
         .input__field:focus + .input__label, .input__field:not(:placeholder-shown) + .input__label {
           font-size: 14px;
           top: -16px; }
@@ -126,10 +126,10 @@
       transform: rotate(40deg); }
 
   .input-checkbox:hover .input-checkbox__square::before, .input-checkbox:hover .input-checkbox__square::after {
-    background: #434176; }
+    background: #004dc0; }
 
   .input-checkbox__field:focus + .input-checkbox__square::before, .input-checkbox__field:focus + .input-checkbox__square::after, .input-checkbox__field:checked + .input-checkbox__square::before, .input-checkbox__field:checked + .input-checkbox__square::after {
-    background: #434176; }
+    background: #004dc0; }
 
   .input-checkbox__field:hover + .input-checkbox__square {
     box-shadow: 0 1px 6px rgba(0, 0, 0, 0.32); }
@@ -138,7 +138,7 @@
     box-shadow: 0 2px 12px rgba(0, 0, 0, 0.32); }
 
   .input-checkbox__field:checked + .input-checkbox__square {
-    border-color: #434176; }
+    border-color: #004dc0; }
 
   .btn {
     border: none;
@@ -158,20 +158,20 @@
     pointer-events: none; }
 
   .component--primary .btn--regular {
-    background-color: #434176;
+    background-color: #004dc0;
     color: #FFF; }
     .component--primary .btn--regular:hover {
-      background-color: #6361a8;
+      background-color: #095ede;
       box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3); }
     .component--primary .btn--regular:focus, .component--primary .btn--regular:active {
-      background-color: #34335c;
+      background-color: #022d6e;
       box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3); }
     .component--primary .btn--regular:disabled {
       background-color: #5c5c5c; }
 
   .link {
     text-decoration: none;
-    color: #434176;
+    color: #004dc0;
     display: inline-block;
     text-decoration: underline;
     transition: color .28s ease-out; }
@@ -209,7 +209,7 @@
       flex: 1; }
     .sign-up__image {
       display: none;
-      background-image: linear-gradient(210deg, #242348, #5A55AA);
+      background-image: linear-gradient(210deg, #004dc0, #1d78fd);
       position: relative;
       overflow: hidden; }
       .sign-up__image svg {
@@ -232,10 +232,10 @@
       text-align: center; }
     .sign-up__title {
       margin-bottom: 16px;
-      color: #434176; }
+      color: #1d70eb; }
     .sign-up__descr {
       font-size: 1.25rem;
-      color: rgba(67, 65, 118, 0.4); }
+      color: #004dc0 }
     .sign-up__form {
       width: 100%; }
     .sign-up__sign, .sign-up__terms {

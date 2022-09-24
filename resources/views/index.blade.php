@@ -85,7 +85,7 @@
         <div class="container px-4 text-center">
             <h1 class="fw-bolder">Welcome to Our Hospital</h1>
             <p class="lead">This is not the final product, I am still working on this website</p>
-            <a class="btn btn-lg btn-light" href="{{ route('home') }}">Go to Admin page!</a>
+            <a class="btn btn-lg btn-light" href="{{ route('home') }}">Sign In / Sign Up!</a>
         </div>
     </header>
     <!-- About section-->
